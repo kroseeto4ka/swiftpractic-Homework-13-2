@@ -10,18 +10,23 @@ import UIKit
 class ViewController: UIViewController {
 	private let helper = Helper()
 	private let textLabel = UILabel()
-	private let imageView = UIImageView()
-    private let imageContainerView = UIView()
+	private let raccoonImageView = UIImageView()
+    private let hamsterImageView = UIImageView()
+    private let racconImageContainerView = UIView()
+    private let hamsterImageContainerView = UIView()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		updateNumbers()
 		
 		setupLabel()
-		setupImageView()
+		setupRaccoonImageView()
+        setupHamsterImageView()
 		view.addSubview(textLabel)
-        setupImage()
-        view.addSubview(imageContainerView)
+        setupRaccoonImage()
+        view.addSubview(racconImageContainerView)
+        setupHamsterImage()
+        view.addSubview(hamsterImageContainerView)
         setupLayout()
 		setupView()
 	}
@@ -37,29 +42,45 @@ class ViewController: UIViewController {
         textLabel.textColor = .white
 	}
 	
-    //перенёс настройку imageView в отдельную функцию, без этого картинка просто не появлялась даже в view hierarchy
-	private func setupImageView() {
-        imageContainerView.layer.shadowColor = UIColor.black.cgColor
-        imageContainerView.layer.shadowOffset = CGSize(width: 15, height: 15)
-        imageContainerView.layer.shadowOpacity = 1
-        imageContainerView.layer.shadowRadius = 10
+    //перенёс настройку imageView в отдельную функцию
+	private func setupRaccoonImageView() {
+        racconImageContainerView.layer.shadowColor = UIColor.black.cgColor
+        racconImageContainerView.layer.shadowOffset = CGSize(width: 15, height: 15)
+        racconImageContainerView.layer.shadowOpacity = 1
+        racconImageContainerView.layer.shadowRadius = 10
 	}
     
-    private func setupImage() {
-        imageView.image = UIImage(named: "raccoon")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 20
-        imageView.clipsToBounds = true
+    private func setupRaccoonImage() {
+        raccoonImageView.image = UIImage(named: "raccoon")
+        raccoonImageView.translatesAutoresizingMaskIntoConstraints = false
+        raccoonImageView.layer.cornerRadius = 20
+        raccoonImageView.clipsToBounds = true
         
         // Добавляем imageView в контейнер
-        imageContainerView.addSubview(imageView)
+        racconImageContainerView.addSubview(raccoonImageView)
+    }
+    
+    private func setupHamsterImageView() {
+        hamsterImageContainerView.layer.shadowColor = UIColor.black.cgColor
+        hamsterImageContainerView.layer.shadowOffset = CGSize(width: 15, height: 15)
+        hamsterImageContainerView.layer.shadowOpacity = 1
+        hamsterImageContainerView.layer.shadowRadius = 10
+    }
+    
+    private func setupHamsterImage() {
+        hamsterImageView.image = UIImage(named: "hamster")
+        hamsterImageView.translatesAutoresizingMaskIntoConstraints = false
+        hamsterImageView.layer.cornerRadius = 20
+        hamsterImageView.clipsToBounds = true
+        
+        hamsterImageContainerView.addSubview(hamsterImageView)
     }
 	
     //настройка слоя градиента родительского View
 	private func setupView() {
 		let gradient = CAGradientLayer()
 		gradient.frame = view.bounds
-        gradient.colors = [UIColor.blue.cgColor, UIColor.red.cgColor]
+        gradient.colors = [UIColor.blue.cgColor, UIColor.red.cgColor, UIColor.yellow.cgColor]
         gradient.startPoint = CGPoint(x: 0, y: 0.5)
         gradient.endPoint = CGPoint(x: 1, y: 0.5)
 		
@@ -69,26 +90,38 @@ class ViewController: UIViewController {
     
     //настройка констрейнтов для imageContainerView
     private func setupLayout() {
-        imageContainerView.translatesAutoresizingMaskIntoConstraints = false
+        racconImageContainerView.translatesAutoresizingMaskIntoConstraints = false
+        hamsterImageContainerView.translatesAutoresizingMaskIntoConstraints = false
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             textLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
             textLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            imageContainerView.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 150),
-            imageContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageContainerView.heightAnchor.constraint(equalToConstant: 200),
-            imageContainerView.widthAnchor.constraint(equalToConstant: 200),
+            racconImageContainerView.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 50),
+            racconImageContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            racconImageContainerView.heightAnchor.constraint(equalToConstant: 200),
+            racconImageContainerView.widthAnchor.constraint(equalToConstant: 200),
             
-            imageView.topAnchor.constraint(equalTo: imageContainerView.topAnchor),
-            imageView.rightAnchor.constraint(equalTo: imageContainerView.rightAnchor),
-            imageView.bottomAnchor.constraint(equalTo: imageContainerView.bottomAnchor),
-            imageView.leftAnchor.constraint(equalTo: imageContainerView.leftAnchor)
+            hamsterImageContainerView.topAnchor.constraint(equalTo: racconImageContainerView.bottomAnchor, constant: 50),
+            hamsterImageContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            hamsterImageContainerView.heightAnchor.constraint(equalToConstant: 200),
+            hamsterImageContainerView.widthAnchor.constraint(equalToConstant: 200),
+            
+            raccoonImageView.topAnchor.constraint(equalTo: racconImageContainerView.topAnchor),
+            raccoonImageView.rightAnchor.constraint(equalTo: racconImageContainerView.rightAnchor),
+            raccoonImageView.bottomAnchor.constraint(equalTo: racconImageContainerView.bottomAnchor),
+            raccoonImageView.leftAnchor.constraint(equalTo: racconImageContainerView.leftAnchor),
+            
+            hamsterImageView.topAnchor.constraint(equalTo: hamsterImageContainerView.topAnchor),
+            hamsterImageView.rightAnchor.constraint(equalTo: hamsterImageContainerView.rightAnchor),
+            hamsterImageView.bottomAnchor.constraint(equalTo: hamsterImageContainerView.bottomAnchor),
+            hamsterImageView.leftAnchor.constraint(equalTo: hamsterImageContainerView.leftAnchor),
             ])
         
         //настройка режима отображения imageView
-        imageView.contentMode = .scaleAspectFill
+        raccoonImageView.contentMode = .scaleAspectFill
+        hamsterImageView.contentMode = .scaleAspectFill
     }
 }
 
