@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         textLabel.textColor = .white
 	}
 	
-    //перенёс настройку imageView в отдельную функцию
+    //настройка контейнера для картинки с енотом
 	private func setupRaccoonImageView() {
         racconImageContainerView.layer.shadowColor = UIColor.black.cgColor
         racconImageContainerView.layer.shadowOffset = CGSize(width: 15, height: 15)
@@ -50,6 +50,7 @@ class ViewController: UIViewController {
         racconImageContainerView.layer.shadowRadius = 10
 	}
     
+    //настройка картинки с енотом
     private func setupRaccoonImage() {
         raccoonImageView.image = UIImage(named: "raccoon")
         raccoonImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -60,6 +61,7 @@ class ViewController: UIViewController {
         racconImageContainerView.addSubview(raccoonImageView)
     }
     
+    //настройка контейнера для картинки с хомяком
     private func setupHamsterImageView() {
         hamsterImageContainerView.layer.shadowColor = UIColor.black.cgColor
         hamsterImageContainerView.layer.shadowOffset = CGSize(width: 15, height: 15)
@@ -67,6 +69,7 @@ class ViewController: UIViewController {
         hamsterImageContainerView.layer.shadowRadius = 10
     }
     
+    //настройка картинки с хомяком
     private func setupHamsterImage() {
         hamsterImageView.image = UIImage(named: "hamster")
         hamsterImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -80,9 +83,9 @@ class ViewController: UIViewController {
 	private func setupView() {
 		let gradient = CAGradientLayer()
 		gradient.frame = view.bounds
-        gradient.colors = [UIColor.blue.cgColor, UIColor.red.cgColor, UIColor.yellow.cgColor]
-        gradient.startPoint = CGPoint(x: 0, y: 0.5)
-        gradient.endPoint = CGPoint(x: 1, y: 0.5)
+        gradient.colors = [UIColor.systemMint.cgColor, UIColor.systemBlue.cgColor, UIColor.systemPurple.cgColor]
+        gradient.startPoint = CGPoint(x: 0, y: 1)
+        gradient.endPoint = CGPoint(x: 1, y: 0)
 		
 		// Добавляем подслой к супервью
 		view.layer.insertSublayer(gradient, at: 0)  // Градиент на фоне супервью
@@ -95,24 +98,29 @@ class ViewController: UIViewController {
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
+            //настройка лейбла с текстом
             textLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
             textLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
+            //настройка контейнера для картинки с енотом
             racconImageContainerView.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 50),
             racconImageContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             racconImageContainerView.heightAnchor.constraint(equalToConstant: 200),
             racconImageContainerView.widthAnchor.constraint(equalToConstant: 200),
             
+            //настройка контейнера для картинки с хомяком
             hamsterImageContainerView.topAnchor.constraint(equalTo: racconImageContainerView.bottomAnchor, constant: 50),
             hamsterImageContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             hamsterImageContainerView.heightAnchor.constraint(equalToConstant: 200),
             hamsterImageContainerView.widthAnchor.constraint(equalToConstant: 200),
             
+            //настройка картинки с енотом
             raccoonImageView.topAnchor.constraint(equalTo: racconImageContainerView.topAnchor),
             raccoonImageView.rightAnchor.constraint(equalTo: racconImageContainerView.rightAnchor),
             raccoonImageView.bottomAnchor.constraint(equalTo: racconImageContainerView.bottomAnchor),
             raccoonImageView.leftAnchor.constraint(equalTo: racconImageContainerView.leftAnchor),
             
+            //настройка картинки с хомяком
             hamsterImageView.topAnchor.constraint(equalTo: hamsterImageContainerView.topAnchor),
             hamsterImageView.rightAnchor.constraint(equalTo: hamsterImageContainerView.rightAnchor),
             hamsterImageView.bottomAnchor.constraint(equalTo: hamsterImageContainerView.bottomAnchor),
