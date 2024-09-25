@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     private let hamsterImageView = UIImageView()
     private let racconImageContainerView = UIView()
     private let hamsterImageContainerView = UIView()
+    private let stackView = UIStackView()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -22,17 +23,17 @@ class ViewController: UIViewController {
 		setupLabel()
 		setupRaccoonImageView()
         setupHamsterImageView()
-		view.addSubview(textLabel)
         setupRaccoonImage()
-        view.addSubview(racconImageContainerView)
         setupHamsterImage()
-        view.addSubview(hamsterImageContainerView)
+        setupStackView()
+        view.addSubview(textLabel)
+        view.addSubview(stackView)
         setupLayout()
 		setupView()
 	}
 	
 	private func updateNumbers() {
-		helper.addNumber(Int.random(in: 1...10))
+		helper.addNumber(Int.random(in: 1...1000))
 	}
 	
 	private func setupLabel() {
@@ -97,28 +98,29 @@ class ViewController: UIViewController {
 		view.layer.insertSublayer(gradient, at: 0)  // Градиент на фоне супервью
 	}
     
+    private func setupStackView() {
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.spacing = 20
+        stackView.alignment = .center
+        
+        stackView.addArrangedSubview(racconImageContainerView)
+        stackView.addArrangedSubview(hamsterImageContainerView)
+    }
+    
     //настройка констрейнтов для imageContainerView
     private func setupLayout() {
         racconImageContainerView.translatesAutoresizingMaskIntoConstraints = false
+        raccoonImageView.translatesAutoresizingMaskIntoConstraints = false
         hamsterImageContainerView.translatesAutoresizingMaskIntoConstraints = false
+        hamsterImageView.translatesAutoresizingMaskIntoConstraints = false
         textLabel.translatesAutoresizingMaskIntoConstraints = false
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            //настройка лейбла с текстом
+            //настройка текстЛейбла
             textLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
             textLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
-            //настройка контейнера для картинки с енотом
-            racconImageContainerView.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 50),
-            racconImageContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            racconImageContainerView.heightAnchor.constraint(equalToConstant: 200),
-            racconImageContainerView.widthAnchor.constraint(equalToConstant: 200),
-            
-            //настройка контейнера для картинки с хомяком
-            hamsterImageContainerView.topAnchor.constraint(equalTo: racconImageContainerView.bottomAnchor, constant: 50),
-            hamsterImageContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            hamsterImageContainerView.heightAnchor.constraint(equalToConstant: 200),
-            hamsterImageContainerView.widthAnchor.constraint(equalToConstant: 200),
             
             //настройка картинки с енотом
             raccoonImageView.topAnchor.constraint(equalTo: racconImageContainerView.topAnchor),
@@ -131,6 +133,12 @@ class ViewController: UIViewController {
             hamsterImageView.rightAnchor.constraint(equalTo: hamsterImageContainerView.rightAnchor),
             hamsterImageView.bottomAnchor.constraint(equalTo: hamsterImageContainerView.bottomAnchor),
             hamsterImageView.leftAnchor.constraint(equalTo: hamsterImageContainerView.leftAnchor),
+            
+            //настройка стека
+            stackView.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 50),
+            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackView.heightAnchor.constraint(equalToConstant: 600),
+            stackView.widthAnchor.constraint(equalToConstant: 300),
             ])
     }
 }
