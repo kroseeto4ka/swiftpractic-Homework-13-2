@@ -57,6 +57,9 @@ class ViewController: UIViewController {
         raccoonImageView.layer.cornerRadius = 20
         raccoonImageView.clipsToBounds = true
         
+        //настройка режима отображения изображения
+        raccoonImageView.contentMode = .scaleAspectFill
+        
         // Добавляем imageView в контейнер
         racconImageContainerView.addSubview(raccoonImageView)
     }
@@ -75,6 +78,9 @@ class ViewController: UIViewController {
         hamsterImageView.translatesAutoresizingMaskIntoConstraints = false
         hamsterImageView.layer.cornerRadius = 20
         hamsterImageView.clipsToBounds = true
+        
+        //настройка режима отображения изображения
+        hamsterImageView.contentMode = .scaleAspectFill
         
         hamsterImageContainerView.addSubview(hamsterImageView)
     }
@@ -126,10 +132,6 @@ class ViewController: UIViewController {
             hamsterImageView.bottomAnchor.constraint(equalTo: hamsterImageContainerView.bottomAnchor),
             hamsterImageView.leftAnchor.constraint(equalTo: hamsterImageContainerView.leftAnchor),
             ])
-        
-        //настройка режима отображения imageView
-        raccoonImageView.contentMode = .scaleAspectFill
-        hamsterImageView.contentMode = .scaleAspectFill
     }
 }
 
