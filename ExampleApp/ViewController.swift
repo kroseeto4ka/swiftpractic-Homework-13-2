@@ -10,21 +10,22 @@ import UIKit
 class ViewController: UIViewController {
 	private let helper = Helper()
 	private let textLabel = UILabel()
-	private let raccoonImageView = UIImageView()
-    private let hamsterImageView = UIImageView()
-    private let racconImageContainerView = UIView()
-    private let hamsterImageContainerView = UIView()
     private let stackView = UIStackView()
+    private let hamsterImage = customImage(
+        imageName: "hamster",
+        cornerRadius: 20,
+        isShadowRequired: true)
+    private let raccoonImage = customImage(
+        imageName: "raccoon",
+        cornerRadius: 20,
+        isShadowRequired: true)
+    
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		updateNumbers()
 		
 		setupLabel()
-		setupRaccoonImageView()
-        setupHamsterImageView()
-        setupRaccoonImage()
-        setupHamsterImage()
         setupStackView()
         view.addSubview(textLabel)
         view.addSubview(stackView)
@@ -42,49 +43,6 @@ class ViewController: UIViewController {
 		textLabel.font = .systemFont(ofSize: 30, weight: .bold)
         textLabel.textColor = .white
 	}
-	
-    //настройка контейнера для картинки с енотом
-	private func setupRaccoonImageView() {
-        racconImageContainerView.layer.shadowColor = UIColor.black.cgColor
-        racconImageContainerView.layer.shadowOffset = CGSize(width: 15, height: 15)
-        racconImageContainerView.layer.shadowOpacity = 1
-        racconImageContainerView.layer.shadowRadius = 10
-	}
-    
-    //настройка картинки с енотом
-    private func setupRaccoonImage() {
-        raccoonImageView.image = UIImage(named: "raccoon")
-        raccoonImageView.translatesAutoresizingMaskIntoConstraints = false
-        raccoonImageView.layer.cornerRadius = 20
-        raccoonImageView.clipsToBounds = true
-        
-        //настройка режима отображения изображения
-        raccoonImageView.contentMode = .scaleAspectFill
-        
-        // Добавляем imageView в контейнер
-        racconImageContainerView.addSubview(raccoonImageView)
-    }
-    
-    //настройка контейнера для картинки с хомяком
-    private func setupHamsterImageView() {
-        hamsterImageContainerView.layer.shadowColor = UIColor.black.cgColor
-        hamsterImageContainerView.layer.shadowOffset = CGSize(width: 15, height: 15)
-        hamsterImageContainerView.layer.shadowOpacity = 1
-        hamsterImageContainerView.layer.shadowRadius = 10
-    }
-    
-    //настройка картинки с хомяком
-    private func setupHamsterImage() {
-        hamsterImageView.image = UIImage(named: "hamster")
-        hamsterImageView.translatesAutoresizingMaskIntoConstraints = false
-        hamsterImageView.layer.cornerRadius = 20
-        hamsterImageView.clipsToBounds = true
-        
-        //настройка режима отображения изображения
-        hamsterImageView.contentMode = .scaleAspectFill
-        
-        hamsterImageContainerView.addSubview(hamsterImageView)
-    }
 	
     //настройка слоя градиента родительского View
 	private func setupView() {
@@ -104,35 +62,19 @@ class ViewController: UIViewController {
         stackView.spacing = 20
         stackView.alignment = .center
         
-        stackView.addArrangedSubview(racconImageContainerView)
-        stackView.addArrangedSubview(hamsterImageContainerView)
+        stackView.addArrangedSubview(raccoonImage)
+        stackView.addArrangedSubview(hamsterImage)
     }
     
     //настройка констрейнтов для imageContainerView
     private func setupLayout() {
-        racconImageContainerView.translatesAutoresizingMaskIntoConstraints = false
-        raccoonImageView.translatesAutoresizingMaskIntoConstraints = false
-        hamsterImageContainerView.translatesAutoresizingMaskIntoConstraints = false
-        hamsterImageView.translatesAutoresizingMaskIntoConstraints = false
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            //настройка текстЛейбла
+            //настройка текста Лейбла
             textLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
             textLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
-            //настройка картинки с енотом
-            raccoonImageView.topAnchor.constraint(equalTo: racconImageContainerView.topAnchor),
-            raccoonImageView.rightAnchor.constraint(equalTo: racconImageContainerView.rightAnchor),
-            raccoonImageView.bottomAnchor.constraint(equalTo: racconImageContainerView.bottomAnchor),
-            raccoonImageView.leftAnchor.constraint(equalTo: racconImageContainerView.leftAnchor),
-            
-            //настройка картинки с хомяком
-            hamsterImageView.topAnchor.constraint(equalTo: hamsterImageContainerView.topAnchor),
-            hamsterImageView.rightAnchor.constraint(equalTo: hamsterImageContainerView.rightAnchor),
-            hamsterImageView.bottomAnchor.constraint(equalTo: hamsterImageContainerView.bottomAnchor),
-            hamsterImageView.leftAnchor.constraint(equalTo: hamsterImageContainerView.leftAnchor),
             
             //настройка стека
             stackView.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 50),
