@@ -31,6 +31,7 @@ class ViewController: UIViewController {
         view.addSubview(stackView)
         setupLayout()
         setupView()
+        
     }
     
     private func updateNumbers() {
@@ -41,8 +42,16 @@ class ViewController: UIViewController {
 // MARK: - Setup view
 extension ViewController {
     private func setupView() {
-        view.backgroundColor = .systemPink
-            }
+        view.backgroundColor = .systemTeal
+        //по какой-то причине экстеншн uiview не подтягивается, из-за чего не работает метод с градиентом
+        /*view.addGradient(
+            color:
+                [UIColor.systemTeal.cgColor,
+                 UIColor.systemBlue.cgColor,
+                 UIColor.systemPurple.cgColor],
+            startPoint: CGPoint(x: 0, y: 1),
+            endPoint: CGPoint(x: 1, y: 0))*/
+    }
     
     private func setupLabel() {
         let firstNumber = helper.getNumbers().first

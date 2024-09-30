@@ -5,7 +5,8 @@
 //  Created by Никита Сорочинский on 01.10.2024.
 //
 
-import Foundation, UIKit
+import Foundation
+import UIKit
 
 extension UIView {
     func addGradient(colors: [CGColor], startPoint: CGPoint, endPoint: CGPoint) {
