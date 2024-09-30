@@ -21,6 +21,12 @@ class customImage: UIView {
         setupLayout()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let shadowPath = UIBezierPath(rect: bounds)
+        layer.shadowPath = shadowPath.cgPath
+    }
+    
     private func setupImage(_ imageName: String, _ cornerRadius: CGFloat) {
         image.image = UIImage(named: imageName)
         image.translatesAutoresizingMaskIntoConstraints = false
