@@ -4,9 +4,10 @@
 //
 //  Created by Никита Сорочинский on 28.09.2024.
 //
+
 import UIKit
 
-class customImage: UIView {
+class CustomImage: UIView {
     private let image = UIImageView()
     
     @available(*, unavailable)
@@ -25,6 +26,10 @@ class customImage: UIView {
         super.layoutSubviews()
         let shadowPath = UIBezierPath(rect: bounds)
         layer.shadowPath = shadowPath.cgPath
+    }
+    
+    func updateImage(_ imageName: String) {
+        image.image = UIImage(named: imageName)
     }
     
     private func setupImage(_ imageName: String, _ cornerRadius: CGFloat) {
@@ -58,4 +63,9 @@ class customImage: UIView {
             image.trailingAnchor.constraint(equalTo: trailingAnchor)
             ])
     }
+}
+
+// MARK: - Constants
+extension CustomImage {
+    
 }

@@ -9,14 +9,21 @@ import UIKit
 
 class ViewController: UIViewController {
     private let helper = Helper()
+    
     private let textLabel = UILabel()
     private let stackView = UIStackView()
-    private let hamsterImage = customImage(
-        imageName: "hamster",
-        cornerRadius: Constants.corner20,
+    private let numberButton = CustomButton(
+        buttonSelfColor: UIColor.systemRed,
+        buttonTextColor: UIColor.black,
+        buttonText: "Change number!",
         isShadowRequired: true)
-    private let raccoonImage = customImage(
-        imageName: "raccoon",
+    private let imageButton = CustomButton(
+        buttonSelfColor: UIColor.systemGreen,
+        buttonTextColor: UIColor.black,
+        buttonText: "Change image!",
+        isShadowRequired: true)
+    private let mainImage = CustomImage(
+        imageName: Images.raccoon.rawValue,
         cornerRadius: Constants.corner20,
         isShadowRequired: true)
     
@@ -29,18 +36,45 @@ class ViewController: UIViewController {
         setupStackView()
         view.addSubview(textLabel)
         view.addSubview(stackView)
-        setupLayout()
+        addAction()
         setupView()
         
+        setupLayout()
     }
     
     private func updateNumbers() {
-        helper.addNumber(Int.random(in: 1...1000))
+        for number in 0...1000 {
+            helper.addNumber(number)
+        }
+    }
+    
+    @objc
+    private func numberButtonTapped() {
+        textLabel.text = helper.getRandomNumber().formatted()
     }
 }
+
+
     
 // MARK: - Setup view
 extension ViewController {
+    func addAction() {
+        numberButton.addTarget(
+            self,
+            action: #selector(numberButtonTapped),
+            for: .touchUpInside)
+        
+        let action = UIAction { _ in
+            let randomImageName = [
+                Images.raccoon.rawValue,
+                Images.hamster.rawValue,
+            ].randomElement() ?? Images.raccoon.rawValue
+            
+            self.mainImage.updateImage(randomImageName)
+        }
+        imageButton.addAction(action, for: .touchUpInside)
+    }
+    
     private func setupView() {
         view.addGradient(
             colors:
@@ -60,12 +94,14 @@ extension ViewController {
     
     private func setupStackView() {
         stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        stackView.spacing = 20
-        stackView.alignment = .center
+        stackView.distribution = .equalSpacing
+        stackView.spacing = 30
+        stackView.alignment = .fill
         
-        stackView.addArrangedSubview(raccoonImage)
-        stackView.addArrangedSubview(hamsterImage)
+        stackView.addArrangedSubview(mainImage)
+        //stackView.addArrangedSubview(hamsterImage)
+        stackView.addArrangedSubview(numberButton)
+        stackView.addArrangedSubview(imageButton)
     }
 }
     
@@ -83,8 +119,9 @@ extension ViewController {
             //настройка стека
             stackView.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 50),
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.heightAnchor.constraint(equalToConstant: 600),
-            stackView.widthAnchor.constraint(equalToConstant: 300),
+            stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
+            
+            mainImage.heightAnchor.constraint(equalTo: stackView.widthAnchor)
         ])
     }
 }
