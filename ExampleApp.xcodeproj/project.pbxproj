@@ -40,13 +40,6 @@
 			);
 			target = 069D08AA2C8E75AF0077DF0B /* ExampleApp */;
 		};
-		D2DE54852CAB52A60018FCEE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"UIView+Gradient.swift",
-			);
-			target = 069D08AA2C8E75AF0077DF0B /* ExampleApp */;
-		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
@@ -60,7 +53,7 @@
 /* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		D2DE54792CAB4DC00018FCEE /* Extensions */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (D2DE54852CAB52A60018FCEE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Extensions; sourceTree = "<group>"; };
+		D2DE54792CAB4DC00018FCEE /* Extensions */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Extensions; sourceTree = "<group>"; };
 		D2DE547B2CAB4DD70018FCEE /* CustomElements */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CustomElements; sourceTree = "<group>"; };
 		D2DE547C2CAB4DE10018FCEE /* ViewControllers */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (D2DE547D2CAB4F0F0018FCEE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = ViewControllers; sourceTree = "<group>"; };
 		D2DE547E2CAB4F750018FCEE /* Services */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (D2DE547F2CAB4F7F0018FCEE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Services; sourceTree = "<group>"; };

@@ -42,15 +42,13 @@ class ViewController: UIViewController {
 // MARK: - Setup view
 extension ViewController {
     private func setupView() {
-        view.backgroundColor = .systemTeal
-        //по какой-то причине экстеншн uiview не подтягивается, из-за чего не работает метод с градиентом
-        /*view.addGradient(
-            color:
-                [UIColor.systemTeal.cgColor,
-                 UIColor.systemBlue.cgColor,
-                 UIColor.systemPurple.cgColor],
+        view.addGradient(
+            colors:
+                [UIColor.systemPink.cgColor,
+                 UIColor.systemCyan.cgColor,
+                 UIColor.systemPink.cgColor],
             startPoint: CGPoint(x: 0, y: 1),
-            endPoint: CGPoint(x: 1, y: 0))*/
+            endPoint: CGPoint(x: 1, y: 0))
     }
     
     private func setupLabel() {

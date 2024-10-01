@@ -10,12 +10,12 @@ import UIKit
 
 extension UIView {
     func addGradient(colors: [CGColor], startPoint: CGPoint, endPoint: CGPoint) {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = bounds
-        gradientLayer.colors = colors
-        gradientLayer.startPoint = startPoint
-        gradientLayer.endPoint = endPoint
+        let gradient = CAGradientLayer()
+        gradient.frame = bounds
+        gradient.colors = colors
+        gradient.startPoint = startPoint
+        gradient.endPoint = endPoint
         
-        layer.insertSublayer(gradientLayer, at: 0)
+        layer.insertSublayer(gradient, at: 0)
     }
 }
